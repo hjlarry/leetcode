@@ -29,10 +29,17 @@
 #
 #
 #
+# class Solution:
+#     def twoSum(self, nums: list, target: int) -> list:
+#         for index, value in enumerate(nums):
+#             for index2, value2 in enumerate(nums):
+#                 if value + value2 == target and index != index2:
+#                     return [index, index2]
 class Solution:
     def twoSum(self, nums: list, target: int) -> list:
+        temp = {}
         for index, value in enumerate(nums):
-            for index2, value2 in enumerate(nums):
-                if value + value2 == target and index != index2:
-                    return [index, index2]
-
+            n = target - value
+            if n in temp:
+                return [temp[n], index]
+            temp[value] = index
