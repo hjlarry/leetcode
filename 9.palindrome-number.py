@@ -44,21 +44,32 @@
 #
 #
 class Solution:
+    # 前两个方案都是通过比较字符串，方案三是翻转数字
+    # def isPalindrome(self, x: int) -> bool:
+    #     if x < 0:
+    #         return False
+    #     string = str(x)
+    #     length = len(string)
+    #     mid = length // 2
+    #     if length % 2 == 0:
+    #         for i in range(0, mid):
+    #             if string[mid + i] != string[mid - 1 - i]:
+    #                 return False
+    #     else:
+    #         for i in range(1, mid + 1):
+    #             if string[mid + i] != string[mid - i]:
+    #                 return False
+    #     return True
+    # def isPalindrome(self, x: int) -> bool:
+    #     return str(x) == str(x)[::-1]
     def isPalindrome(self, x: int) -> bool:
         if x < 0:
             return False
-        string = str(x)
-        length = len(string)
-        mid = length // 2
-        if length % 2 == 0:
-            for i in range(0, mid):
-                if string[mid + i] != string[mid - 1 - i]:
-                    return False
-        else:
-            for i in range(1, mid + 1):
-                if string[mid + i] != string[mid - i]:
-                    return False
-        return True
+        p, res = x, 0
+        while p:
+            res = res * 10 + p % 10
+            p = p // 10
+        return res == x
 
 
 # print(Solution().isPalindrome(12123))
