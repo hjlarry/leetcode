@@ -42,16 +42,28 @@
 #
 #
 class Solution:
-    def reverse(self, x: int) -> int:
-        if x >= 0:
-            result = int("".join(reversed(str(x))))
-            if result < 2147483648:
-                return result
-        else:
-            result = 0 - int("".join(reversed(str(x)[1:])))
-            if result > -2147483649:
-                return result
-        return 0
+    # def reverse(self, x: int) -> int:
+    #     if x >= 0:
+    #         result = int("".join(reversed(str(x))))
+    #         if result < 2147483648:
+    #             return result
+    #     else:
+    #         result = 0 - int("".join(reversed(str(x)[1:])))
+    #         if result > -2147483649:
+    #             return result
+    #     return 0
+
+    def reverse(self, x):
+        neg = False
+        if x < 0:
+            x = x * -1
+            neg = True
+        result = int(str(x)[::-1])
+        if neg:
+            result = result * -1
+        if abs(result) > 2 ** 31 - 1:
+            return 0
+        return result
 
 
 print(Solution().reverse(1534236469))
