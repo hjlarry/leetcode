@@ -37,26 +37,31 @@
 #
 #
 class Solution:
+    # def longestCommonPrefix(self, strs) -> str:
+    #     result = ""
+    #     index = 0
+    #     if not strs:
+    #         return result
+    #     while index < len(strs[0]):
+    #         current = strs[0][index]
+    #         all_equal = True
+    #         for item in strs:
+    #             if index >= len(item) or item[index] != current:
+    #                 all_equal = False
+    #                 break
+    #         if all_equal:
+    #             result += current
+    #             index += 1
+    #         else:
+    #             break
+
+    # return result
     def longestCommonPrefix(self, strs) -> str:
         result = ""
-        index = 0
-        if not strs:
-            return result
-        while index < len(strs[0]):
-            current = strs[0][index]
-            all_equal = True
-            for item in strs:
-                if index >= len(item) or item[index] != current:
-                    all_equal = False
-                    break
-            if all_equal:
-                result += current
-                index += 1
-            else:
+        items = zip(*strs)
+        for item in items:
+            if len(set(item)) > 1:
                 break
-
+            result += item[0]
         return result
-
-
-print(Solution().longestCommonPrefix(["aa", "a"]))
 
