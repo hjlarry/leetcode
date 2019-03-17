@@ -78,29 +78,40 @@
 #
 #
 class Solution:
+    # def romanToInt(self, s: str) -> int:
+    #     numbers = {
+    #         "I": 1,
+    #         "V": 5,
+    #         "X": 10,
+    #         "L": 50,
+    #         "C": 100,
+    #         "D": 500,
+    #         "M": 1000,
+    #         "A": 4,
+    #         "B": 9,
+    #         "E": 40,
+    #         "F": 90,
+    #         "G": 400,
+    #         "H": 900,
+    #     }
+    #     s = (
+    #         s.replace("IV", "A")
+    #         .replace("IX", "B")
+    #         .replace("XL", "E")
+    #         .replace("XC", "F")
+    #         .replace("CD", "G")
+    #         .replace("CM", "H")
+    #     )
+    #     return sum(numbers.get(n) for n in s)
     def romanToInt(self, s: str) -> int:
-        numbers = {
-            "I": 1,
-            "V": 5,
-            "X": 10,
-            "L": 50,
-            "C": 100,
-            "D": 500,
-            "M": 1000,
-            "A": 4,
-            "B": 9,
-            "E": 40,
-            "F": 90,
-            "G": 400,
-            "H": 900,
-        }
-        s = (
-            s.replace("IV", "A")
-            .replace("IX", "B")
-            .replace("XL", "E")
-            .replace("XC", "F")
-            .replace("CD", "G")
-            .replace("CM", "H")
-        )
-        return sum(numbers.get(n) for n in s)
+        numbers = {"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000}
+        prev_value = None
+        result = 0
+        for ch in s:
+            current_value = numbers[ch]
+            result += current_value
+            if prev_value and current_value > prev_value:
+                result -= 2 * prev_value
+            prev_value = current_value
+        return result
 
