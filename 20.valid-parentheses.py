@@ -60,19 +60,29 @@
 #
 #
 class Solution:
+    # def isValid(self, s: str) -> bool:
+    #     result = []
+    #     for item in s:
+    #         if item in "([{":
+    #             result.append(item)
+    #         elif item is ")" and result and result[-1] is "(":
+    #             result.pop()
+    #         elif item is "]" and result and result[-1] is "[":
+    #             result.pop()
+    #         elif item is "}" and result and result[-1] is "{":
+    #             result.pop()
+    #         else:
+    #             return False
+    #     if result:
+    #         return False
+    #     return True
     def isValid(self, s: str) -> bool:
-        result = []
-        for item in s:
-            if item in "([{":
-                result.append(item)
-            elif item is ")" and result and result[-1] is "(":
-                result.pop()
-            elif item is "]" and result and result[-1] is "[":
-                result.pop()
-            elif item is "}" and result and result[-1] is "{":
-                result.pop()
+        stack = []
+        match = {")": "(", "}": "{", "]": "["}
+        for ch in s:
+            if ch in match:
+                if not (stack and stack.pop() == match[ch]):
+                    return False
             else:
-                return False
-        if result:
-            return False
-        return True
+                stack.append(ch)
+        return not stack
