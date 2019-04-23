@@ -46,17 +46,29 @@ import collections
 
 
 class Solution:
-    def helper(self, node, depth):
-        if node is not None:
-            self.result[depth].append(node.val)
-            self.helper(node.left, depth + 1)
-            self.helper(node.right, depth + 1)
+    #  my solution, only runtime beats 18.5 % of python3 submissions
+    # def helper(self, node, depth):
+    #     if node is not None:
+    #         self.result[depth].append(node.val)
+    #         self.helper(node.left, depth + 1)
+    #         self.helper(node.right, depth + 1)
+
+    # def levelOrderBottom(self, root):
+    #     self.result = collections.defaultdict(list)
+    #     self.helper(root, 1)
+    #     result = []
+    #     for _, item in sorted(self.result.items(), reverse=True):
+    #         result.append(item)
+    #     return result
+    def helper(self, node, level, res):
+        if node:
+            if len(res) < level + 1:
+                res.insert(0, [])
+            res[-(level + 1)].append(node.val)
+            self.helper(node.left, level + 1, res)
+            self.helper(node.right, level + 1, res)
 
     def levelOrderBottom(self, root):
-        self.result = collections.defaultdict(list)
-        self.helper(root, 1)
-        result = []
-        for _, item in sorted(self.result.items(), reverse=True):
-            result.append(item)
-        return result
-
+        res = []
+        self.helper(root, 0, res)
+        return res
