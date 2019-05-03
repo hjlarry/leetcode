@@ -12,10 +12,11 @@
 
 
 class Solution:
+    # my solution 81.46%
     def hasPathSum(self, root, sum: int) -> bool:
         if root is None:
             return False
-        if sum == root.val and root.left is None and root.right is None:
+        if root.left is None and root.right is None and sum == root.val:
             return True
         left = self.hasPathSum(root.left, sum - root.val)
         right = self.hasPathSum(root.right, sum - root.val)
