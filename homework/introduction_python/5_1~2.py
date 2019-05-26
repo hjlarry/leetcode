@@ -20,33 +20,21 @@ https://talk.pycourses.com/topic/42/python%E5%85%A5%E9%97%A8-%E4%BD%9C%E4%B8%9A-
 import aiohttp
 import asyncio
 
-loop = asyncio.get_event_loop()
-session = aiohttp.ClientSession(loop=loop)
-
-
-async def arange(i):
-    n = 0
-    while n < i:
-        yield n
-        n += 1
-
-
-async def fetch(i):
-    res = await session.get("http://httpbin.org/get?a=" + str(i))
-    return await res.json()
-
 
 async def result():
-    async for i in arange(10):
-        res = await fetch(i)
-        print(res.get("args"))
-        yield res
+    async with aiohttp.ClientSession() as session:
+        for i in range(10):
+            url = f"http://httpbin.org/get?a={i}"
+            async with session.get(url) as response:
+                result = await response.json()
+                yield result.get("args").get("a")
 
 
 async def main():
-    res = [res.get("args").get("a") async for res in result()]
+    res = [res async for res in result()]
     print(res)
 
 
+loop = asyncio.get_event_loop()
 loop.run_until_complete(main())
 loop.close()

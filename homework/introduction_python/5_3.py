@@ -12,17 +12,23 @@
 import aiohttp
 import asyncio
 
+
+async def fetch(session, url):
+    async with session.get(url) as response:
+        result = await response.json()
+        return result.get("args").get("a")
+
+
+async def main():
+    async with aiohttp.ClientSession() as session:
+        tasks = []
+        for i in range(10):
+            url = f"http://httpbin.org/get?a={i}"
+            task = asyncio.ensure_future(fetch(session, url))
+            tasks.append(task)
+        print(await asyncio.gather(*tasks))
+
+
 loop = asyncio.get_event_loop()
-session = aiohttp.ClientSession(loop=loop)
-
-
-async def fetch(i):
-    res = await session.get("http://httpbin.org/get?a=" + str(i))
-    return await res.json()
-
-
-tasks = [asyncio.ensure_future(fetch(i)) for i in range(10)]
-loop.run_until_complete(asyncio.wait(tasks))
-result = [task.result().get("args").get("a") for task in tasks]
-print(result)
+loop.run_until_complete(main())
 loop.close()
