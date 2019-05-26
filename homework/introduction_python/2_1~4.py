@@ -83,4 +83,33 @@ def match(ma):
 
 res = re.sub(search_uid(), match, s)
 print(res)
+print()
 
+"""
+4. 实现Fibonacci(斐波那契数列)函数fib:
+```
+>>> [fib(n) for n in range(16)]
+[0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610]
+```
+提示：递归、缓存（标准库自带的缓存方案）
+"""
+
+print("六、 实现Fibonacci函数")
+
+
+def _fib():
+    a, b = 0, 1
+    while True:
+        yield a
+        a, b = b, a + b
+
+
+g = _fib()
+
+
+def fib(n):
+    return next(g)
+
+
+print([fib(n) for n in range(16)])
+print()

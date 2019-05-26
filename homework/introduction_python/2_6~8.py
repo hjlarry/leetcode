@@ -1,35 +1,6 @@
 import time
 
 """
-4. 实现Fibonacci(斐波那契数列)函数fib:
-```
->>> [fib(n) for n in range(16)]
-[0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610]
-```
-提示：递归、缓存（标准库自带的缓存方案）
-"""
-
-print("一、 实现Fibonacci函数")
-
-
-def _fib():
-    a, b = 0, 1
-    while True:
-        yield a
-        a, b = b, a + b
-
-
-g = _fib()
-
-
-def fib(n):
-    return next(g)
-
-
-print([fib(n) for n in range(16)])
-print()
-
-"""
 6. 写一个装饰器inject，在__init__时自动给类注入参数：
 ```
 In : class Test:
@@ -46,7 +17,7 @@ Out: (4, 5, 6)
 提示：修改self.__dict__
 """
 
-print("二、 __init__的装饰器")
+print("一、 __init__的装饰器")
 
 
 def injectArguments(fn):
@@ -89,7 +60,7 @@ Cost: 2.000157356262207
 提示：魔术方法 __enter__、__exit__，time模块、ContextDecorator
 """
 
-print("三、 上下文管理器")
+print("二、 上下文管理器")
 
 
 class Timed:
@@ -132,7 +103,7 @@ Out: 14
 ```
 """
 
-print("四、 链式调用")
+print("三、 链式调用")
 
 
 class Seq:
