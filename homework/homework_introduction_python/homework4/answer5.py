@@ -1,3 +1,22 @@
+"""
+5\. 使用THREADPOOLEXECUTOR和多线程搭配
+
+要求：
+- 用一个线程监视当然已完成的进度
+- 用ThreadPoolExecutor创建3个线程执行fib函数
+- 用另外一个线程作为生产者
+```
+❯ python 5.py
+fib(26) = 121393
+fib(28) = 317811
+fib(27) = 196418
+fib(29) = 514229
+fib(31) = 1346269
+fib(30) = 832040
+```
+
+提示：使用submit方法提交新的任务
+"""
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import threading
 import queue

@@ -1,3 +1,35 @@
+"""
+3\. 使用标准库内置模块写一个最简单的MAPREDUCE例子
+分析一下金庸小说中，金庸最喜欢用的短句是那些？
+
+要求：
+
+金庸小说可以网上去找
+使用停用词， https://github.com/chdd/weibo/blob/master/stopwords/中文停用词库.txt
+```
+❯ python 3.py
+ForkPoolWorker-1 reading novels/3.txt
+ForkPoolWorker-3 reading novels/2.txt
+ForkPoolWorker-2 reading novels/1.txt
+
+
+金庸最爱说：😉
+
+过了一会  : count:72
+拍的一声  : count:69
+站起身来  : count:59
+砰的一声  : count:52
+韦小宝大喜 : count:50
+心中大喜  : count:46
+否则的话  : count:44
+是了    : count:41
+过不多时  : count:40
+突然之间  : count:38
+```
+
+提示：codecs.open处理文件编码、multiprocessing.Pool的map方法、之前的延伸阅读链接
+"""
+
 import collections
 import itertools
 import multiprocessing
