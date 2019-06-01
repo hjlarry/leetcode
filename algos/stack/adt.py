@@ -45,6 +45,9 @@ class ArrayStack(Stack):
     def is_empty(self):
         return self.count == 0
 
+    def peek(self):
+        return self.items[self.count - 1]
+
 
 class LinklistStack(Stack):
     def __init__(self, max_size=32):
