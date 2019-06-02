@@ -7,35 +7,29 @@ from arrayADT import Array
 
 
 class ArrayQueue:
-    def __init__(self, n):
-        self.items = Array(n)
-        self.n = n
+    def __init__(self, maxsize):
+        self.items = Array(maxsize)
+        self.maxsize = maxsize
         self.head = 0
         self.tail = 0
 
     def enqueue(self, item):
-        if self.tail == self.n:  # 说明队列末尾没有空间
-            if self.head == 0:  # 说明队列满了
-                return False
-            # 进行数据搬移
-            new_items = Array(self.n)
-            for i in range(self.head, self.tail):
-                new_items.insert(i - self.head, self.items[i])
-            # 搬移后更新 head 和 tail
-            self.tail -= self.head
-            self.head = 0
-            self.items = new_items
-
-        self.items.insert(self.tail, item)
-        self.tail += 1
+        if len(self) >= self.maxsize:
+            raise Exception("queue is full!")
+        self.items[self.head % self.maxsize] = item
+        self.head += 1
         return True
 
     def dequeue(self):
-        if self.head == self.tail:
-            return None
-        item = self.items[self.head]
-        self.head += 1
+        item = self.items[self.tail % self.maxsize]
+        self.tail += 1
         return item
+
+    def __len__(self):
+        return self.head - self.tail
+
+    def size(self):
+        return len(self)
 
 
 def test_arrayqueue():
