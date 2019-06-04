@@ -1,5 +1,5 @@
 import random
-from arrayADT import Array
+from array_adt import Array
 
 
 class MaxHeap:

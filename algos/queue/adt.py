@@ -3,7 +3,7 @@ import pathlib
 
 sys.path.append(str(pathlib.Path(__file__).parent.parent))
 
-from arrayADT import Array
+from array_adt import Array
 
 
 class ArrayQueue:

@@ -4,8 +4,8 @@ import pathlib
 
 sys.path.append(str(pathlib.Path(__file__).parent.parent))
 
-from arrayADT import Array
-from linkListADT import DoubleLinkList
+from array_adt import Array
+from linklist_adt import DoubleLinkList
 
 
 class Stack(abc.ABC):

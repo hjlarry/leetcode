@@ -1,4 +1,4 @@
-from heapADT import MaxHeap
+from heap_adt import MaxHeap
 
 
 class PriorityQueue:
