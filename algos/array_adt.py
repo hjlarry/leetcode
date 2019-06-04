@@ -1,4 +1,13 @@
-# 固定长度数组实现
+""" 
+python默认是可变长度数组，而其他语言都是定长的，所以这里模拟一个固定长度的数组
+
+相关练习题
+1. 第15题 求三数之和 https://leetcode.com/problems/3sum/
+2. 第41题 求缺失的第一个正数 https://leetcode-cn.com/problems/first-missing-positive/
+3. 第169题 求众数 https://leetcode.com/problems/majority-element/
+"""
+
+
 class Array:
     def __init__(self, size=32, init=None):
         self._size = size
@@ -47,9 +56,6 @@ class Array:
         else:
             return False
 
-    def print_all(self):
-        print(self)
-
 
 def test_array():
     array = Array(5)
@@ -60,10 +66,10 @@ def test_array():
     array.insert(3, 10)
     assert array.insert(0, 100) is False
     assert len(array) == 5
-    array.print_all()
+    print(array)
     assert array.find(1) == 5
     assert array.delete(4) is True
-    array.print_all()
+    print(array)
     array.clear()
     assert array[3] is None
 

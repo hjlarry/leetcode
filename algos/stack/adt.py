@@ -4,7 +4,6 @@ import pathlib
 
 sys.path.append(str(pathlib.Path(__file__).parent.parent))
 
-from array_adt import Array
 from linklist_adt import DoubleLinkList
 
 
@@ -26,19 +25,19 @@ class ArrayStack(Stack):
     def __init__(self, max_size=32):
         self.max_size = max_size
         self.count = 0
-        self.items = Array(max_size)
+        self.items = []
 
     def push(self, item):
         if self.count == self.max_size:
             return False
-        self.items[self.count] = item
+        self.items.append(item)
         self.count += 1
         return True
 
     def pop(self):
         if self.count == 0:
             return None
-        item = self.items[self.count - 1]
+        item = self.items.pop()
         self.count -= 1
         return item
 

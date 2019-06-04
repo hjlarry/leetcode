@@ -1,14 +1,6 @@
-import sys
-import pathlib
-
-sys.path.append(str(pathlib.Path(__file__).parent.parent))
-
-from array_adt import Array
-
-
 class ArrayQueue:
     def __init__(self, maxsize):
-        self.items = Array(maxsize)
+        self.items = [None] * maxsize
         self.maxsize = maxsize
         self.head = 0
         self.tail = 0
@@ -43,13 +35,14 @@ def test_arrayqueue():
     assert a.dequeue() == 1
     assert a.dequeue() == 2
     a.enqueue(6)
+    # print还会显示有2，因为deque并不是删除元素
     print(a.items)
 
 
 # 循环队列可以避免数据搬移
 class CircularQueue:
     def __init__(self, n):
-        self.items = Array(n + 1)
+        self.items = [None] * (n + 1)
         self.n = n + 1
         self.head = 0
         self.tail = 0
