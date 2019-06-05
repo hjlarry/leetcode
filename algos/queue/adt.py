@@ -1,3 +1,10 @@
+""" 
+相关练习题
+1. 第641题 设计一个循环双端队列 https://leetcode.com/problems/design-circular-deque/
+2. 第239题 滑动窗口的最大值 https://leetcode.com/problems/sliding-window-maximum/
+"""
+
+
 class ArrayQueue:
     def __init__(self, maxsize):
         self.items = [None] * maxsize

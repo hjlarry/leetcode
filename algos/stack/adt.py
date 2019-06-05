@@ -7,6 +7,14 @@ sys.path.append(str(pathlib.Path(__file__).parent.parent))
 from linklist_adt import DoubleLinkList
 
 
+"""
+相关练习题：
+1. 第20题 验证有效括号 https://leetcode.com/problems/valid-parentheses/
+2. 第32题 最长有效括号 https://leetcode.com/problems/longest-valid-parentheses/
+3. 第150题 逆波兰表达式求值 https://leetcode.com/problems/evaluate-reverse-polish-notation/
+"""
+
+
 class Stack(abc.ABC):
     """栈的API"""
 

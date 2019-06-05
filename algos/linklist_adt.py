@@ -1,5 +1,11 @@
 import abc
 
+"""
+相关练习题：
+1. 第23题 合并K个有序链表 https://leetcode.com/problems/merge-k-sorted-lists/
+2. 第141题 检测环形链表 https://leetcode.com/problems/linked-list-cycle/
+"""
+
 
 class Node:
     __slots__ = ("value", "prev_ref", "next_ref")
