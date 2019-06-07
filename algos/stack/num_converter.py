@@ -24,7 +24,7 @@ print()
 
 print("示例二、 通用十进制转化器")
 
-
+# 另一个实现在recursive中
 def base_converter(num, base):
     digits = "0123456789ABCDEF"
 
