@@ -1,11 +1,7 @@
-import random
-from array_adt import Array
-
-
 class MaxHeap:
     def __init__(self, maxsize=None):
         self.maxsize = maxsize or 32
-        self._elements = Array(self.maxsize)
+        self._elements = [None] * self.maxsize
         self._count = 0
 
     def __len__(self):
@@ -67,23 +63,5 @@ def test_maxheap():
         assert i == h.extract()
 
 
-# 堆排序
-def heap_sort(arr):
-    m = MaxHeap()
-    result = []
-    for i in arr:
-        m.add(i)
-    for _ in range(len(arr)):
-        result.append(m.extract())
-    return result
-
-
-def test_heapsort_reverse():
-    ll = list(range(10))
-    random.shuffle(ll)
-    assert heap_sort(ll) == sorted(ll, reverse=True)
-
-
 if __name__ == "__main__":
     test_maxheap()
-    test_heapsort_reverse()
