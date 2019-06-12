@@ -1,4 +1,4 @@
-from hashtable_adt import HashTable
+from adt import HashTable
 
 
 class SetAdt(HashTable):

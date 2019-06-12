@@ -1,6 +1,3 @@
-from array_adt import Array
-
-
 class Slot:
     def __init__(self, key, value):
         self.key = key
@@ -19,7 +16,7 @@ class HashTable:
     EMPTY = Slot(None, None)  # 使用过但已删除
 
     def __init__(self, factor=0.8):
-        self._table = Array(size=8, init=HashTable.UNUSED)
+        self._table = [HashTable.UNUSED] * 8
         self.length = 0
         self.factor = factor
         assert 0 < self.factor < 1
@@ -65,7 +62,7 @@ class HashTable:
     def _rehash(self):
         old_table = self._table
         new_table_size = len(old_table) * 2
-        self._table = Array(new_table_size, HashTable.UNUSED)
+        self._table = [HashTable.UNUSED] * new_table_size
         self.length = 0
         for slot in old_table:
             if slot is not HashTable.UNUSED and slot is not HashTable.EMPTY:
@@ -109,7 +106,7 @@ class HashTable:
 
 class HashTableWithLinklist:
     def __init__(self, factor=0.8):
-        self._table = Array(size=8)
+        self._table = [None] * 8
         self.length = 0
         self.factor = factor
 
@@ -175,7 +172,7 @@ class HashTableWithLinklist:
     def _rehash(self):
         old_values = list(self)
         newsize = len(self._table) * 2
-        self._table = Array(newsize, None)
+        self._table = [None] * newsize
         self.length = 0
         for slot in old_values:
             self.add(slot.key, slot.value)

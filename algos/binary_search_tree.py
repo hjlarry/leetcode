@@ -1,3 +1,9 @@
+"""
+相关练习题
+1. 第98题 验证二叉查找树 https://leetcode.com/problems/validate-binary-search-tree/
+"""
+
+
 class Node:
     def __init__(self, key, value=None, left=None, right=None):
         self.key = key

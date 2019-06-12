@@ -1,3 +1,11 @@
+"""
+相关练习题
+1. 第226题 翻转二叉树 https://leetcode.com/problems/invert-binary-tree/
+2. 第104题 求二叉树的最大深度 https://leetcode.com/problems/maximum-depth-of-binary-tree/
+3. 第112题 找一个路径上节点的和等于给定值 https://leetcode.com/problems/path-sum/
+"""
+
+
 class Node:
     def __init__(self, data, left=None, right=None):
         self.data = data
