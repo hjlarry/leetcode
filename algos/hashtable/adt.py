@@ -1,3 +1,10 @@
+"""
+相关练习题
+1. 第146题 LRU cache https://leetcode.com/problems/lru-cache/
+2. 第460题 LFU cache https://leetcode.com/problems/lfu-cache/
+"""
+
+
 class Slot:
     def __init__(self, key, value):
         self.key = key
