@@ -12,15 +12,27 @@
 
 class Solution:
     # my solution, 95%
+    # def preorderTraversal(self, root: TreeNode) -> List[int]:
+    #     result = []
+    #     def helper(node, res):
+    #         if node:
+    #             res.append(node.val)
+    #             helper(node.left, res)
+    #             helper(node.right, res)
+    #     helper(root, result)
+    #     return result
+
+    # top voted solution, use stack, 83%
     def preorderTraversal(self, root: TreeNode) -> List[int]:
-        result = []
-        def helper(node, res):
+        res = []
+        stack = [root]
+        while stack:
+            node = stack.pop()
             if node:
                 res.append(node.val)
-                helper(node.left, res)
-                helper(node.right, res)
-        helper(root, result)
-        return result
+                stack.append(node.right)
+                stack.append(node.left)
+        return res
 
                     
 
