@@ -22,4 +22,3 @@ class Solution(object):
 
 
 # print(Solution().majorityElement([3, 2, 3]))
-

@@ -129,4 +129,3 @@ class MyCircularDeque(object):
 # param_6 = obj.getRear()
 # param_7 = obj.isEmpty()
 # param_8 = obj.isFull()
-

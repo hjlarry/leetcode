@@ -41,4 +41,3 @@ class Solution:
             current = current.next
         current.next = l1 or l2
         return dummy.next
-

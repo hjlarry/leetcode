@@ -58,4 +58,3 @@ class Solution:
 
     def isSymmetric(self, root) -> bool:
         return self.test(root, root)
-

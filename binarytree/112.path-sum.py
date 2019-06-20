@@ -23,4 +23,3 @@ class Solution:
         if left or right:
             return True
         return False
-

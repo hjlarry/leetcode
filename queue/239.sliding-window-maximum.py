@@ -71,4 +71,3 @@ class Solution(object):
             if i >= k - 1:
                 out.append(nums[d[0]])
         return out
-

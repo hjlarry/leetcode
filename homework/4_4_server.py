@@ -49,4 +49,3 @@ while 1:
         print(f"put :{pri}")
         tasks_queue.put((pri, double, pri))
         count += 1
-

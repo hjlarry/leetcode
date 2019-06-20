@@ -44,4 +44,3 @@ class Solution(object):
             if output[i] <= output[i - 1]:
                 return False
         return True
-

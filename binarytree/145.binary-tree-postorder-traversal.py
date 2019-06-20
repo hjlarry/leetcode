@@ -10,6 +10,7 @@
 #         self.left = None
 #         self.right = None
 
+
 class Solution:
     # my solution use rescusive, 82%
     # def postorderTraversal(self, root: TreeNode) -> List[int]:
@@ -33,5 +34,3 @@ class Solution:
                 stack.append(node.left)
                 stack.append(node.right)
         return result[::-1]
-
-

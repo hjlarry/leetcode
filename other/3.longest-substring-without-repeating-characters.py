@@ -24,4 +24,3 @@ class Solution(object):
                 max_len = current_len
             a.add(s[i])
         return max_len
-

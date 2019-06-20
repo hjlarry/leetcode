@@ -6,4 +6,3 @@ def list_sum(lists):
 
 
 print(list_sum([10, 20, 3]))
-

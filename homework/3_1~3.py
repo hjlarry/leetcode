@@ -132,4 +132,3 @@ def roundrobin(*iterables):
 
 
 print(list(roundrobin("ABC", "D", "EF")))
-

@@ -64,4 +64,3 @@ class Solution:
                 break
             result += item[0]
         return result
-

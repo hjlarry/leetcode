@@ -43,4 +43,3 @@ def base_converter(num, base):
 
 print("25转二进制:", base_converter(25, 2))
 print("960转十六进制:", base_converter(960, 16))
-

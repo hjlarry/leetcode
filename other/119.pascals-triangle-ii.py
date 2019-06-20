@@ -11,4 +11,3 @@ class Solution:
             for j in range(1, i):
                 results[i - j] += results[i - j - 1]
         return results
-

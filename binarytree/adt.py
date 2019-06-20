@@ -131,4 +131,3 @@ if __name__ == "__main__":
     btree.reverse(btree.root)
     print("====反转之后的结果=====")
     btree.preorder_trav(btree.root)
-

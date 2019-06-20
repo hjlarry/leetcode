@@ -38,7 +38,7 @@
 #
 class Solution:
     def plusOne(self, digits):
-        new = str(int(''.join(str(x) for x in digits)) + 1)
+        new = str(int("".join(str(x) for x in digits)) + 1)
         return list(int(x) for x in new)
 
 

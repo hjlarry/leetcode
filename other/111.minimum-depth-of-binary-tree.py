@@ -19,4 +19,3 @@ class Solution:
         if root.left is None or root.right is None:
             return max(self.minDepth(root.left), self.minDepth(root.right)) + 1
         return min(self.minDepth(root.left), self.minDepth(root.right)) + 1
-

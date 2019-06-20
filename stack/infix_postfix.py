@@ -70,4 +70,3 @@ def do_math(op, op1, op2):
 
 
 print(postfix_eval("7 8 + 3 2 + /"))
-

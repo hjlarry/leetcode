@@ -134,4 +134,3 @@ print(
     .filter(lambda x: x > 4)
     .reduce(lambda x, y: x + y)
 )
-

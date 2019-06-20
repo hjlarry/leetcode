@@ -91,4 +91,3 @@ class Solution:
         if None in [p, q] or p.val != q.val:
             return False
         return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
-

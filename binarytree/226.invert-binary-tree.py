@@ -43,4 +43,3 @@ class Solution(object):
                 stack.append(node.left)
                 stack.append(node.right)
         return root
-

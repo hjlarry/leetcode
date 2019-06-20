@@ -21,4 +21,3 @@ def hot_potato(namelist, num):
 
 
 print(hot_potato(["Bill", "David", "Susan", "Jane", "Kent", "Brad"], 7))
-

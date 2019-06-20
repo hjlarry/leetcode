@@ -18,4 +18,3 @@ class Solution(object):
             if n in temp:
                 return [temp[n], index]
             temp[value] = index
-

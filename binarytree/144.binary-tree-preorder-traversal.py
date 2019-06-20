@@ -10,6 +10,7 @@
 #         self.left = None
 #         self.right = None
 
+
 class Solution:
     # my solution, 95%
     # def preorderTraversal(self, root: TreeNode) -> List[int]:
@@ -33,6 +34,3 @@ class Solution:
                 stack.append(node.right)
                 stack.append(node.left)
         return res
-
-                    
-

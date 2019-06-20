@@ -114,4 +114,3 @@ class Solution:
                 result -= 2 * prev_value
             prev_value = current_value
         return result
-
