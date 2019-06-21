@@ -10,7 +10,7 @@
 #         self.left = None
 #         self.right = None
 
+
 class Solution:
     def constructFromPrePost(self, pre: List[int], post: List[int]) -> TreeNode:
-        
-
+        pass
