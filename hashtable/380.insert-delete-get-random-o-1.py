@@ -54,45 +54,85 @@
 #
 #
 # My solution, but getRandom() is not O(1), so only 22%
+# class RandomizedSet:
+#     def __init__(self):
+#         """
+#         Initialize your data structure here.
+#         """
+#         self.items = set()
+
+#     def insert(self, val: int) -> bool:
+#         """
+#         Inserts a value to the set. Returns true if the set did not already contain the specified element.
+#         """
+#         if val in self.items:
+#             return False
+#         self.items.add(val)
+#         return True
+
+#     def remove(self, val: int) -> bool:
+#         """
+#         Removes a value from the set. Returns true if the set contained the specified element.
+#         """
+#         try:
+#             self.items.remove(val)
+#             return True
+#         except KeyError:
+#             return False
+
+#     def getRandom(self) -> int:
+#         """
+#         Get a random element from the set.
+#         """
+#         # this solution why error in a case?
+#         # val = self.items.pop()
+#         # self.items.add(val)
+#         # return val
+
+#         # list(self.items) takes O(n)
+#         from random import choice
+
+#         return choice(list(self.items))
+
+
+#  A voted solution, 95%
 class RandomizedSet:
     def __init__(self):
         """
         Initialize your data structure here.
         """
-        self.items = set()
+        self.nums, self.pos = [], {}
 
     def insert(self, val: int) -> bool:
         """
         Inserts a value to the set. Returns true if the set did not already contain the specified element.
         """
-        if val in self.items:
+        if val in self.pos:
             return False
-        self.items.add(val)
+        self.nums.append(val)
+        self.pos[val] = len(self.nums) - 1
         return True
 
     def remove(self, val: int) -> bool:
         """
         Removes a value from the set. Returns true if the set contained the specified element.
         """
-        try:
-            self.items.remove(val)
-            return True
-        except KeyError:
+        if val not in self.pos:
             return False
+        idx, last = self.pos[val], self.nums[-1]
+        self.nums[idx] = last
+        self.pos[last] = idx
+        self.nums.pop()
+        del self.pos[val]
+        return True
 
     def getRandom(self) -> int:
         """
         Get a random element from the set.
         """
-        # this solution why error in a case?
-        # val = self.items.pop()
-        # self.items.add(val)
-        # return val
-
-        # list(self.items) takes O(n)
         from random import choice
 
-        return choice(list(self.items))
+        return choice(self.nums)
 
 
 # Your RandomizedSet object will be instantiated and called as such:
