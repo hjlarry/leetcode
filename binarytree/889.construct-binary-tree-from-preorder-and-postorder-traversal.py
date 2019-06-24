@@ -32,7 +32,7 @@ class Solution:
             node = TreeNode(v)
             while stack[-1].val == post[j]:
                 stack.pop()
-                j+=1
+                j += 1
             if not stack[-1].left:
                 stack[-1].left = node
             else:

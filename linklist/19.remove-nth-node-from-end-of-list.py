@@ -9,6 +9,7 @@
 #         self.val = x
 #         self.next = None
 
+
 class Solution(object):
     # A solution use fast and slow pointer, 64%
     # def removeNthFromEnd(self, head, n):
@@ -28,7 +29,7 @@ class Solution(object):
     #     cur.next = cur.next.next
     #     return head
 
-    # 一个讨巧方案，并没有移动节点，而是移动节点的值，93% 
+    # 一个讨巧方案，并没有移动节点，而是移动节点的值，93%
     # def removeNthFromEnd(self, head, n):
     #     def index(node):
     #         if not node:
@@ -50,4 +51,3 @@ class Solution(object):
             head = head.next
         nodelist[0].next = nodelist[0].next.next
         return self.next
-
