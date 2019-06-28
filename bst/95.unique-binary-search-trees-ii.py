@@ -64,7 +64,7 @@ class Solution:
         if n == 0:
             return []
         return self.trees(1, n)
-    
+
     # a top voted solution, 72%
     # def generateTrees(self, n):
     #     if n == 0:
@@ -79,4 +79,4 @@ class Solution:
     #                 for root in range(first, last+1)
     #                 for left in trees(first, root-1)
     #                 for right in trees(root+1, last)] or [None]
-    #     return trees(1, n)  
+    #     return trees(1, n)
