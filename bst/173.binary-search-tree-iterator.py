@@ -14,34 +14,63 @@
 class BSTIterator(object):
     # my solution use preorder iter, 58%
     # my solution use postorder iter, 74%
+    # def __init__(self, root):
+    #     """
+    #     :type root: TreeNode
+    #     """
+    #     self.root = root
+    #     self.items = []
+    #     self.iter_items(self.root)
+    #     # self.items = self.items[::-1]
+
+    # def iter_items(self, root):
+    #     if root is not None:
+    #         self.iter_items(root.right)
+    #         self.items.append(root.val)
+    #         self.iter_items(root.left)
+
+    # def next(self):
+    #     """
+    #     @return the next smallest number
+    #     :rtype: int
+    #     """
+    #     return self.items.pop()
+
+    # def hasNext(self):
+    #     """
+    #     @return whether we have a next smallest number
+    #     :rtype: bool
+    #     """
+    #     return len(self.items) > 0
+
+    # top voted solution, 74%
     def __init__(self, root):
         """
         :type root: TreeNode
         """
-        self.root = root
         self.items = []
-        self.iter_items(self.root)
-        # self.items = self.items[::-1]
+        self.push_left_part(root)
 
-    def iter_items(self, root):
-        if root is not None:
-            self.iter_items(root.right)
-            self.items.append(root.val)
-            self.iter_items(root.left)
+    def push_left_part(self, node):
+        while node is not None:
+            self.items.append(node)
+            node = node.left
 
     def next(self):
         """
         @return the next smallest number
         :rtype: int
         """
-        return self.items.pop()
+        tmp = self.items.pop()
+        self.push_left_part(tmp.right)
+        return tmp.val
 
     def hasNext(self):
         """
         @return whether we have a next smallest number
         :rtype: bool
         """
-        return len(self.items) > 0
+        return bool(self.items)
 
 
 # Your BSTIterator object will be instantiated and called as such:
