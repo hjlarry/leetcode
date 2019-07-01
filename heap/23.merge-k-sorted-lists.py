@@ -15,10 +15,10 @@
 #
 # Merge k sorted linked lists and return it as one sorted list. Analyze and
 # describe its complexity.
-# 
+#
 # Example:
-# 
-# 
+#
+#
 # Input:
 # [
 # 1->4->5,
@@ -26,8 +26,8 @@
 # 2->6
 # ]
 # Output: 1->1->2->3->4->4->5->6
-# 
-# 
+#
+#
 #
 # Definition for singly-linked list.
 # class ListNode:

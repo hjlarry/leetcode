@@ -14,10 +14,10 @@
 # Testcase Example:  '["MyCircularDeque","insertLast","insertLast","insertFront","insertFront","getRear","isFull","deleteLast","insertFront","getFront"]\n[[3],[1],[2],[3],[4],[],[],[],[4],[]]'
 #
 # Design your implementation of the circular double-ended queue (deque).
-# 
+#
 # Your implementation should support following operations:
-# 
-# 
+#
+#
 # MyCircularDeque(k): Constructor, set the size of the deque to be k.
 # insertFront(): Adds an item at the front of Deque. Return true if the
 # operation is successful.
@@ -31,15 +31,15 @@
 # -1.
 # getRear(): Gets the last item from Deque. If the deque is empty, return
 # -1.
-# isEmpty(): Checks whether Deque is empty or not. 
+# isEmpty(): Checks whether Deque is empty or not.
 # isFull(): Checks whether Deque is full or not.
-# 
-# 
-# 
-# 
+#
+#
+#
+#
 # Example:
-# 
-# 
+#
+#
 # MyCircularDeque circularDeque = new MycircularDeque(3); // set the size to be
 # 3
 # circularDeque.insertLast(1);            // return true
@@ -51,18 +51,18 @@
 # circularDeque.deleteLast();            // return true
 # circularDeque.insertFront(4);            // return true
 # circularDeque.getFront();            // return 4
-# 
-# 
-# 
-# 
+#
+#
+#
+#
 # Note:
-# 
-# 
+#
+#
 # All values will be in the range of [0, 1000].
 # The number of operations will be in the range of [1, 1000].
 # Please do not use the built-in Deque library.
-# 
-# 
+#
+#
 #
 class Node:
     __slots__ = ("value", "prev_ref", "next_ref")
