@@ -53,14 +53,56 @@
 #
 class Solution:
     # my solution, only 23%
-    def isSubsequence(self, s: str, t: str) -> bool:
-        a = b = 0
-        while a < len(s) and b < len(t):
-            if s[a] == t[b]:
-                a += 1
-            b += 1
+    # def isSubsequence(self, s: str, t: str) -> bool:
+    #     a = b = 0
+    #     while a < len(s) and b < len(t):
+    #         if s[a] == t[b]:
+    #             a += 1
+    #         b += 1
         
-        if a >= len(s):
-            return True
-        return False
+    #     if a >= len(s):
+    #         return True
+    #     return False
+
+    # top voted solution, 83% 代码注释见最下方
+    # def isSubsequence(self, s: str, t: str) -> bool:
+    #     t = iter(t)
+    #     return all(i in t for i in s)
+
+    # another top voted solution, 97%
+    def isSubsequence(self, s: str, t: str) -> bool:
+        last = -1
+        for char in s:
+            try:
+                last = t.index(char, last+1)
+            except:
+                return False
+        return True
+
+"""
+def is_subsequence(a, b): 
+    # 把 b 变为一个迭代器，这样每次调用for循环实际是调用next，会让它往前走
+    b = iter(b)
+    print(b)
+    gen = (i for i in a) 
+    print(gen)
+    for i in gen:
+        print(i)
+    # (i in b) 等价于
+    # while True:
+    #    val = next(b)
+    #    if val == i:
+    #       yield True
+
+    # 另一个例子:
+    # b = (i for i in range(5))
+    # print((2 in b))
+    # print((4 in b))
+    # print((3 in b))
+    gen = ((i in b) for i in a) 
+    print(gen)
+    for i in gen:
+        print(i)
+    return all(((i in b) for i in a))
+"""
 
