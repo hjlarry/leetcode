@@ -46,38 +46,75 @@
 #
 #
 #
-# my solution 78%
+# my solution 78%, not only use stack`s method
+# class MyQueue:
+#     def __init__(self):
+#         """
+#         Initialize your data structure here.
+#         """
+#         self.items = []
+
+#     def push(self, x: int) -> None:
+#         """
+#         Push element x to the back of queue.
+#         """
+#         self.items.append(x)
+
+#     def pop(self) -> int:
+#         """
+#         Removes the element from in front of queue and returns that element.
+#         """
+#         return self.items.pop(0)
+
+#     def peek(self) -> int:
+#         """
+#         Get the front element.
+#         """
+#         return self.items[0]
+
+#     def empty(self) -> bool:
+#         """
+#         Returns whether the queue is empty.
+#         """
+#         return len(self.items) == 0
+
+
+# top voted solution, 85%
 class MyQueue:
     def __init__(self):
         """
         Initialize your data structure here.
         """
-        self.items = []
+        self.master = []
+        self.slave = []
 
     def push(self, x: int) -> None:
         """
         Push element x to the back of queue.
         """
-        self.items.append(x)
+        while len(self.master):
+            self.slave.append(self.master.pop())
+        self.master.append(x)
+        while len(self.slave):
+            self.master.append(self.slave.pop())
 
     def pop(self) -> int:
         """
         Removes the element from in front of queue and returns that element.
         """
-        return self.items.pop(0)
+        return self.master.pop()
 
     def peek(self) -> int:
         """
         Get the front element.
         """
-        return self.items[0]
+        return self.master[-1]
 
     def empty(self) -> bool:
         """
         Returns whether the queue is empty.
         """
-        return len(self.items) == 0
-
+        return not len(self.master)
 
 # Your MyQueue object will be instantiated and called as such:
 # obj = MyQueue()
