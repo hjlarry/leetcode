@@ -88,15 +88,24 @@
 #             pass
 
 
+# my solution, 70%
+class Node:
+    def __init__(self, key, val):
+        self.key = key
+        self.val = val
+        self.next = None
+
+
 class MyHashMap(object):
     def __init__(self):
         """
         Initialize your data structure here.
         """
-        self.items = [None] * 102400
+        self.m = 1024
+        self.items = [None] * self.m
 
     def hash(self, key):
-        return key % 102400
+        return key % self.m
 
     def put(self, key, value):
         """
@@ -105,7 +114,19 @@ class MyHashMap(object):
         :type value: int
         :rtype: None
         """
-        self.items[hash(key)] = value
+
+        old = self.items[self.hash(key)]
+        if old is None:
+            self.items[self.hash(key)] = Node(key, value)
+            return
+        while old is not None:
+            if old.key == key:
+                old.val = value
+                return
+            if old.next is None:
+                break
+            old = old.next
+        old.next = Node(key, value)
 
     def get(self, key):
         """
@@ -113,8 +134,12 @@ class MyHashMap(object):
         :type key: int
         :rtype: int
         """
-        result = self.items[hash(key)]
-        return result if result else -1
+        node = self.items[self.hash(key)]
+        while node is not None:
+            if node.key == key:
+                return node.val
+            node = node.next
+        return -1
 
     def remove(self, key):
         """
@@ -122,10 +147,13 @@ class MyHashMap(object):
         :type key: int
         :rtype: None
         """
-        try:
-            self.items[hash(key)] = None
-        except:
-            pass
+        node = self.items[self.hash(key)]
+        while node is not None:
+            if node.key == key:
+                node.val = None
+                node.key = None
+                return
+            node = node.next
 
 
 # Your MyHashMap object will be instantiated and called as such:
