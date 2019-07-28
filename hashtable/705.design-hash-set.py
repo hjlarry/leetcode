@@ -50,29 +50,84 @@
 #
 #
 # the build in set, 87%
+# class MyHashSet(object):
+#     def __init__(self):
+#         """
+#         Initialize your data structure here.
+#         """
+#         self.items = set()
+
+#     def add(self, key):
+#         """
+#         :type key: int
+#         :rtype: None
+#         """
+#         self.items.add(key)
+
+#     def remove(self, key):
+#         """
+#         :type key: int
+#         :rtype: None
+#         """
+#         try:
+#             self.items.remove(key)
+#         except KeyError:
+#             pass
+
+#     def contains(self, key):
+#         """
+#         Returns true if this set contains the specified element
+#         :type key: int
+#         :rtype: bool
+#         """
+#         return key in self.items
+
+# my solution 63%
+class Node:
+    def __init__(self, key):
+        self.key = key
+        self.next = None
+
+
 class MyHashSet(object):
     def __init__(self):
         """
         Initialize your data structure here.
         """
-        self.items = set()
+        self.m = 1024
+        self.items = [None] * self.m
+
+    def hash(self, key):
+        return key % self.m
 
     def add(self, key):
         """
         :type key: int
         :rtype: None
         """
-        self.items.add(key)
+        old = self.items[self.hash(key)]
+        if old is None:
+            self.items[self.hash(key)] = Node(key)
+            return
+        while old is not None:
+            if old.key == key:
+                return
+            if old.next is None:
+                break
+            old = old.next
+        old.next = Node(key)
 
     def remove(self, key):
         """
         :type key: int
         :rtype: None
         """
-        try:
-            self.items.remove(key)
-        except KeyError:
-            pass
+        node = self.items[self.hash(key)]
+        while node is not None:
+            if node.key == key:
+                node.key = None
+                return
+            node = node.next
 
     def contains(self, key):
         """
@@ -80,7 +135,12 @@ class MyHashSet(object):
         :type key: int
         :rtype: bool
         """
-        return key in self.items
+        node = self.items[self.hash(key)]
+        while node is not None:
+            if node.key == key:
+                return True
+            node = node.next
+        return False
 
 
 # Your MyHashSet object will be instantiated and called as such:
