@@ -45,7 +45,7 @@ func (s *singleLinkList) appendLeft(value interface{}) bool {
 }
 
 func (s *singleLinkList) insert(k int, value interface{}) bool {
-	if k > s.length || k < 0 {
+	if k > s.length || k < 0 || s.length > s.maxSize {
 		return false
 	}
 	if k == s.length {
@@ -65,7 +65,7 @@ func (s *singleLinkList) insert(k int, value interface{}) bool {
 	return true
 }
 
-func (s *singleLinkList) findByIndex(k int) *node {
+func (s *singleLinkList) findByIndex(k int) interface{} {
 	if k > s.length || k < 0 {
 		return nil
 	}
@@ -73,7 +73,7 @@ func (s *singleLinkList) findByIndex(k int) *node {
 	for i := 0; i < k; i++ {
 		cur = cur.next
 	}
-	return cur
+	return cur.value
 }
 
 func (s *singleLinkList) remove(k int) bool {
@@ -92,4 +92,13 @@ func (s *singleLinkList) remove(k int) bool {
 	pre.next = cur.next
 	s.length--
 	return true
+}
+
+func (s *singleLinkList) elements() (results []interface{}) {
+	cur := s.root.next
+	for cur != nil {
+		results = append(results, cur.value)
+		cur = cur.next
+	}
+	return
 }
