@@ -31,81 +31,133 @@
 // 
 // Related Topics Design
 
-//leetcode submit region begin(Prohibit modification and deletion)
 package main
 
-type Node struct {
-	key   int
-	value int
-	prev  *Node
-	next  *Node
+// 一、双向链表加哈希表的解决方案
+//type Node struct {
+//	key   int
+//	value int
+//	prev  *Node
+//	next  *Node
+//}
+//type LRUCache struct {
+//	cap  int
+//	head *Node
+//	tail *Node
+//	keys map[int]*Node
+//}
+//
+//func Constructor(capacity int) LRUCache {
+//	cache := LRUCache{
+//		cap:  capacity,
+//		keys: make(map[int]*Node),
+//	}
+//	cache.head = &Node{}
+//	cache.tail = &Node{}
+//	cache.head.next = cache.tail
+//	cache.tail.prev = cache.head
+//	return cache
+//}
+//
+//func (this *LRUCache) Get(key int) int {
+//	node, exist := this.keys[key]
+//	if !exist {
+//		return -1
+//	}
+//
+//	node.prev.next = node.next
+//	node.next.prev = node.prev
+//
+//	this.head.next.prev = node
+//	node.next = this.head.next
+//	this.head.next = node
+//	node.prev = this.head
+//
+//	return node.value
+//}
+//
+//func (this *LRUCache) Put(key int, value int) {
+//	node, exist := this.keys[key]
+//	if !exist {
+//		new_node := Node{
+//			key:   key,
+//			value: value,
+//			prev:  this.head,
+//			next:  nil,
+//		}
+//		this.keys[key] = &new_node
+//		tmp := this.head.next
+//		this.head.next = &new_node
+//		new_node.next = tmp
+//		tmp.prev = &new_node
+//		if len(this.keys) > this.cap {
+//			need_del := this.tail.prev
+//			need_del.prev.next = this.tail
+//			this.tail.prev = need_del.prev
+//			delete(this.keys, need_del.key)
+//		}
+//	} else {
+//		node.value = value
+//		node.prev.next = node.next
+//		node.next.prev = node.prev
+//
+//		this.head.next.prev = node
+//		node.next = this.head.next
+//		this.head.next = node
+//		node.prev = this.head
+//	}
+//}
+import "container/list"
+
+type kv struct {
+	key int
+	val int
 }
+
 type LRUCache struct {
 	cap  int
-	head *Node
-	tail *Node
-	keys map[int]*Node
+	data map[int]*list.Element
+	hits *list.List
 }
 
 func Constructor(capacity int) LRUCache {
 	cache := LRUCache{
 		cap:  capacity,
-		keys: make(map[int]*Node),
+		data: make(map[int]*list.Element),
+		hits: list.New(),
 	}
-	cache.head = &Node{}
-	cache.tail = &Node{}
-	cache.head.next = cache.tail
-	cache.tail.prev = cache.head
 	return cache
 }
 
 func (this *LRUCache) Get(key int) int {
-	node, exist := this.keys[key]
+	node, exist := this.data[key]
 	if !exist {
 		return -1
 	}
-
-	node.prev.next = node.next
-	node.next.prev = node.prev
-
-	this.head.next.prev = node
-	node.next = this.head.next
-	this.head.next = node
-	node.prev = this.head
-
-	return node.value
+	this.hits.MoveToFront(node)
+	return node.Value.(kv).val
 }
 
 func (this *LRUCache) Put(key int, value int) {
-	node, exist := this.keys[key]
-	if !exist {
-		new_node := Node{
-			key:   key,
-			value: value,
-			prev:  this.head,
-			next:  nil,
+	node, exist := this.data[key]
+	if exist{
+		node.Value = kv{
+			key: key,
+			val: value,
 		}
-		this.keys[key] = &new_node
-		tmp := this.head.next
-		this.head.next = &new_node
-		new_node.next = tmp
-		tmp.prev = &new_node
-		if len(this.keys) > this.cap {
-			need_del := this.tail.prev
-			need_del.prev.next = this.tail
-			this.tail.prev = need_del.prev
-			delete(this.keys, need_del.key)
-		}
-	} else {
-		node.value = value
-		node.prev.next = node.next
-		node.next.prev = node.prev
-
-		this.head.next.prev = node
-		node.next = this.head.next
-		this.head.next = node
-		node.prev = this.head
+		this.hits.MoveToFront(node)
+		return
 	}
+
+	if this.hits.Len() == this.cap{
+		last := this.hits.Back()
+		delete(this.data, last.Value.(kv).key)
+		this.hits.Remove(last)
+	}
+	this.data[key] = this.hits.PushFront(kv{
+		key: key,
+		val: value,
+	})
 }
 
 /**
